@@ -1,0 +1,51 @@
+.trigger {
+    @apply py-4 pl-5 pr-4 text-sm leading-5 rounded-md border border-grey-100 h-[2.25rem] w-full flex items-center justify-between bg-dark bg-opacity-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-light-blue-500 [&>span]:min-w-0 disabled:cursor-not-allowed disabled:border-dark disabled:border-opacity-3 disabled:data-[placeholder]:text-grey-250 data-[placeholder]:text-grey-600;
+}
+
+.trigger:disabled .icon {
+    @apply disabled:text-grey-250;
+}
+
+.trigger[data-state="open"] .icon {
+    @apply rotate-180;
+}
+
+.icon {
+    @apply flex-shrink-0 text-solid-blue-500;
+}
+
+.scroll-btn {
+    @apply cursor-default flex items-center justify-center py-1 text-solid-blue-500;
+}
+
+.content {
+    @apply relative shadow-m bg-light rounded-lg border border-solid border-grey-100 overflow-hidden min-w-[6.25rem] max-h-[min(17rem,var(--radix-select-content-available-height))] data-[state=open]:data-[side=top]:animate-slide-down-and-fade data-[state=open]:data-[side=right]:animate-slide-left-and-fade data-[state=open]:data-[side=bottom]:animate-slide-up-and-fade data-[state=open]:data-[side=left]:animate-slide-right-and-fade [&_[role=group]]:py-2;
+}
+
+.popper-content {
+    @apply w-full min-w-[var(--radix-select-trigger-width)];
+}
+
+.viewport {
+    @apply p-4;
+}
+
+.viewport-popper {
+    @apply h-[var(--radix-select-trigger-height)];
+}
+
+.label {
+    @apply text-grey-600 pt-2 pb-4 px-4;
+}
+
+.item {
+    @apply relative w-full cursor-default select-none text-sm leading-5 flex items-center justify-between rounded-md p-4 outline-none focus-visible:bg-dark focus-visible:bg-opacity-5 hover:bg-dark hover:bg-opacity-5 data-[disabled]:pointer-events-none data-[disabled]:text-grey-200;
+}
+
+.item-icon-wrap {
+    @apply text-solid-blue-500 pl-4 flex-shrink-0 flex items-center justify-center;
+}
+
+.separator {
+    @apply -mx-4 mt-4 h-[1px] bg-grey-100;
+}

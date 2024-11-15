@@ -1,35 +1,51 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { faker } from '@faker-js/faker';
+import type { SelectProps } from '@radix-ui/react-select';
+import { Select as SelectPrimitive, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/Select';
+import { useState } from 'react';
+
+const MOCK_OPTIONS = new Array(50).fill('').map(() => {
+    return {
+        label: faker.person.fullName(),
+        value: faker.string.uuid(),
+    };
+});
+
+const Select: React.FC<SelectProps> = (props) => {
+    const [open, setOpen] = useState(false);
+    const [value, setValue] = useState<string | undefined>(undefined);
+
+    return (
+        <SelectPrimitive
+            {...props}
+            open={open}
+            onOpenChange={(open) => {
+                setOpen(open);
+            }}
+            value={value}
+            onValueChange={(value) => {
+                setValue(value);
+            }}
+        >
+            <SelectTrigger className="max-w-[300px]">
+                <SelectValue placeholder="Select..." />
+            </SelectTrigger>
+            <SelectContent sideOffset={2}>
+                {MOCK_OPTIONS.map((option) => {
+                    return (
+                        <SelectItem key={option.value} value={option.value}>
+                            {option.label}
+                        </SelectItem>
+                    );
+                })}
+            </SelectContent>
+        </SelectPrimitive>
+    );
+};
 
 function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    return <div className="p-4">
+        <Select />
+    </div>;
 }
 
-export default App
+export default App;

@@ -1,0 +1,9 @@
+/node_modules
+/coverage
+/dist
+/tmp
+/storybook-static
+**/*.svg
+/playwright-report
+/test-results
+/blob-report
